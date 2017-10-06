@@ -1,19 +1,21 @@
 Attribute VB_Name = "niin"
 Option Explicit
 
-Sub RegisterUDF()
-Dim desc As String
+Sub init()
+Dim desc As String, cat As Byte, macroName As String
 desc = "Adds leading zeroes to NIINs due to incorrect formatting and extracts NIINS from NSNs " & vbCrLf & _
        "NIIN(<Cell Range>)"
-Application.MacroOptions macro:="NIIN", Description:=desc, Category:=7, hasmenu:=True, menutext:=desc
+cat = 7
+macroName = "NIIN"
+control.RegisterUDF macroName, desc, cat
 End Sub
 
-Function niin(CELL As Range) As String
-Attribute niin.VB_Description = "Adds leading zeroes to NIINs due to incorrect formatting and extracts NIINS from NSNs \r\nNIIN(<Cell Range>)"
-Attribute niin.VB_ProcData.VB_Invoke_Func = " \n7"
+Function NIIN(CELL As Range) As String
+Attribute NIIN.VB_Description = "Adds leading zeroes to NIINs due to incorrect formatting and extracts NIINS from NSNs \r\nNIIN(<Cell Range>)"
+Attribute NIIN.VB_ProcData.VB_Invoke_Func = " \n7"
 'if length of range is <= 9 (Badly formatted NIIN), then reformat with leading zero
 'if legnth of range is > 9 (NSN) then extract NIIN or last 9
-  niin = formatNIIN(CELL)
+  NIIN = formatNIIN(CELL)
 End Function
 
 Function NIIN_Help() As String
@@ -40,8 +42,6 @@ Set rng = Application.InputBox("Select (click on ) the column that you'd like to
                                "Column Selection", Type:=8)
 If rng Is Nothing Then control.cleanExit
 
-
-    
 
 Set ws = rng.Parent
 
