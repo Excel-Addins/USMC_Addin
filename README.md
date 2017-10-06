@@ -6,7 +6,7 @@
 
 - [ ] Julian Date Converter
 - [ ] NSN/NIIN Extract/Builder
-- [ ] NIIN Formatter
+- [x] NIIN Formatter
 - [ ] Duplicate Highlighter
 - [ ] Document Number Extract
 - [ ] MDR Connection
